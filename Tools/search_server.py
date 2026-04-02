@@ -5,12 +5,14 @@
 
 from mcp.server.fastmcp import FastMCP
 from tavily import TavilyClient
+import os
+from dotenv import load_dotenv
 
-# Replace with your actual key from tavily.com
-TAVILY_API_KEY = ""
+load_dotenv()
+
 
 mcp = FastMCP("search")
-tavily = TavilyClient(api_key=TAVILY_API_KEY)
+tavily = TavilyClient(api_key=os.environ["TAVILY_API_KEY"])
 
 @mcp.tool()
 def search_web(query: str) -> str:
